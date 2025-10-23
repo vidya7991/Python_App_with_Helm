@@ -61,4 +61,9 @@ jobs:
       - name: Deploy using Helm
         run: |
           echo "Deploying with Helm..."
-          helm install -f ./foo-py/values.yaml foo-py ./foo-py -n py-demo-2
+
+          helm upgrade --install foo-py ./foo-py \
+            -f ./foo-py/values.yaml \
+            -n py-demo-2 \
+            --create-namespace
+
