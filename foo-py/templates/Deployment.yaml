@@ -1,0 +1,22 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  # namespace: py-demo-1
+  name: python-demo
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: app-2048
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: app-2048
+    spec:
+      containers:
+      - image: {{ .Values.Image }}
+        imagePullPolicy: Always
+        name: app-2048
+        ports:
+        - containerPort: 3000
